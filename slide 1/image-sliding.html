@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  .sliding-container{
+    height: 100vh;
+    position: relative;
+  }
+  .slider{
+    width: 100%;
+    height: 100%;
+  }
+  .slider{
+    width: 100%;
+    height: 100%;
+  }
+  .fa{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 25px;
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  .fa-arrow-left{
+    left: 0;
+  }
+  .fa-arrow-right{
+    right: 0;
+  }
+  .text{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    text-transform: uppercase;
+    text-align: center;
+	border: 10px solid green;
+  }
+</style>
+</head>
+<body>
+  <section class="sliding-container">
+    <i class="fa fa-arrow-left"></i>
+     <img src="" class="slider">
+     <p class="text">
+	 </p>
+    <i class="fa fa-arrow-right"></i>
+	
+  </section>
+</body>
+<script>
+  const images = [
+    {image: 'images/food1.jpg', text: 'went from scrambled Latin passage to ubiqitous dummy text.'},
+    {image: 'images/food2.jpg', text: 'Welcome to the best eatery'},
+    {image: 'images/food3.jpg', text: 'Enjoy the meal'},
+    {image: 'images/food4.jpg', text: 'Come back again'},
+    {image: 'images/food5.jpg', text: 'Enjoy every bit of it'},
+  ]
+
+  slider = document.querySelector('.slider')
+  text = document.querySelector('.text')
+  prev = document.querySelector('.fa-arrow-left')
+  next = document.querySelector('.fa-arrow-right')
+  
+  counter = 0
+  slider.src = images[counter].image
+  text.innerHTML = images[counter].text
+
+  // next
+  next.addEventListener('click', function(){
+    if(counter < images.length ){
+      counter++
+    }
+    else{
+      counter = 0
+    }
+    slider.src = images[counter].image
+    text.innerHTML = images[counter].text
+  })
+
+
+  // prev
+ prev.addEventListener('click', function(){
+    if(counter > 0 ){
+      counter--
+    }
+    else{
+      counter = images.length-1
+    }
+    slider.src = images[counter].image
+    text.innerHTML = images[counter].text
+  })
+
+// slide images gater some time
+function slideImages(){
+  if(counter < images.length - 1 ){
+      counter++
+    }
+    else{
+      counter = 0
+    }
+    slider.src = images[counter].image
+    text.innerHTML = images[counter].text
+
+    setTimeout(slideImages, 1000)
+}
+slideImages()
+
+</script>
+</html>
